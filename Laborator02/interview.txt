@@ -1,0 +1,20 @@
+1.De ce este considerată clasa String imutabilă?
+2.De ce este considerată clasa StringBuffer mutabilă?
+3.Care este diferenta esentială între StringBuffer si StringBuilder?
+4.Se pot compara două obiecte de tip String? Argumentați!
+5.De ce un vector de caractere este mai potrivit decât un obiect de tip String pentru retinerea unei parole?
+6.Ce se întâmplă atunci când folosim operatorul == pentru a compara obiecte de tip String?
+7.Există vreo modalitate prin care un obiect se poate converti în obiect de tip String?
+
+1. Deoarece, odata ce obiectele din aceasta clasa sunt create, ele nu isi mai
+pot schimba valoarea
+2. Clasa StringBuffer este mutabila, deoarece obiectele din aceasta clasa, odata create,
+isi pot modifica valoarea, se folosesc metode precum append, insert, delete, reverse.
+3. Diferenta esentiala este ca StringBuffer este thread-safe (thread-uri diferite nu pot sa apeleze in acelasi timp metode din StringBuffer), iar StringBuilder nu este (thread-uri diferite pot sa apeleze in acelasi timp metode din StringBuilder).
+4. Se pot compara, dar se pot compara cu metoda equals. Daca se compara cu ==, atunci de fapt se vor compara referintele, ceea ce nu este intotdeauna cautat.
+5. Clasa String este imutabila, si deci obiectul in care parola este memorata poate ramane mai mult timp in 'String pool'. Un vector de caractere ramane in memorie pana cand este sters de Garbage collector. De asemenea, parola nu poate fi modificata din motive de securitate atat timp cat este un obiect String, deoarece clasa este imutabila, dar un vector de char poate fi modificat.
+6. Se compara referintele obiectelor, si poate returna true si in cazul in care cele 2 siruri comparate nu seamana deloc, dar ele sunt de exemplu retinute in String pool. Daca ele sunt declarate ca String object si nu ca String literal, atunci rezultatul va fi false, deoarece locatiile de pe heap unde sunt stocate acestea sunt diferite.
+7. Exista mai multe modalitati:
+	String convertedtoString = String.valueOf(Object);
+	String convertedtoString = "" + Object;
+	String convertedtoString = Object.toString();
