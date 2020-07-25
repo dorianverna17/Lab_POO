@@ -4,7 +4,7 @@ import java.lang.*;
 class Route {
 	String origin;
 	String destination;
-
+ 
 	public Route(String str1, String str2) {
 		this.origin = str1;
 		this.destination = str2;
