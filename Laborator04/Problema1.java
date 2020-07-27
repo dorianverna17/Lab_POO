@@ -139,4 +139,4 @@ public class Problema1 {
 		Patrat patrat = new Patrat();
 		System.out.println(patrat.Arie());		
 	}
-}
+}	
