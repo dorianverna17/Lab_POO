@@ -1,0 +1,75 @@
+1. Prin ce difera o interfata de o clasa? Dar de o clasa abstracta?
+2. In ce scopuri este indicat a se uzita interfetele in Java?
+3. Care sunt restrictiile care se aplica in cazul interfetelor in limbajul Java?
+4. Ce reprezinta o metoda abstracta?
+5. Poate o clasa abstracta sa implementeze o interfata in Java? Argumentati!
+6. O clasa abstracta poate contine o metoda statica?
+7. In ce conditii o subclasa a unei clase abstracte care implementeaza o interfata poate fi instantiabila?
+
+1.
+	Diferente dintre clasa si interfata:
+	- cuvantul cheie pentru a crea o clasa este "class" pe cand cel pentru a crea o interfata este
+	"interface"
+	- o clasa poate fi instantiata pe cand o interfata nu
+	- o clasa nu poate avea mai multe superclase, dar aceasta poate implementa mai multe interfete
+	- o clasa poate mosteni o alta clasa dar o interfata nu poate mosteni o clasa
+	- o clasa poate fi mostenita de o alta folosind "extends" pe cand o interfata poate fi mostenita de o clasa folosind cuvantul "implements" , iar de o alta interfata folosind
+	cuvantul "extends"
+	- o clasa poate contine constructori pe cand o interfata nu
+	- o clasa poate contine metode abstracte pe cand o interfata poate contine numai metode abstracte
+	- intr-o interfata toate varibilele si metodele sunt publice pe cand intr-o clasa nu neaparat
+	- toate variabilele dintr-o interfata sunt ori statice ori finale
+	Diferente dintre interfata si clasa abstracta:
+	- interfata are doar metode abstracte, clasa abstracta poate avea si metode nonabstracte
+	- variabilele intr-o interfata sunt by default final, intr-o clasa abstracta nu
+	- abstract class can provide the implementation of interface. Interface can't provide the
+	implementation of abstract class
+	- "implements" vs "extends"
+	- An interface can extend another Java interface only, an abstract class can extend another Java class and implement multiple Java interfaces.
+	- Members of a Java interface are public by default. A Java abstract class can have class members like private, protected, etc.
+
+2.
+	- It is used to achieve total abstraction.
+	- Since java does not support multiple inheritance in case of class, but by using interface it can achieve multiple inheritance.
+	- It is also used to achieve loose coupling.
+	- Interfaces are used to implement abstraction.
+
+3.
+	- All interface Methods are implicitly public and abstract. Even if you use keyword it will not create the problem as you can see in the second Method declaration. (Before Java 8)
+    - Interfaces can declare only Constant. Instance variables are not allowed. This means all variables inside the Interface must be public, static, final. Variables inside Interface are implicitly public static final.
+    - Interface Methods cannot be static. (Before Java 8)
+    - Interface Methods cannot be final, strictfp or native.
+    - The Interface can extend one or more other Interface. Note: The Interface can only extend another interface.
+
+	- An interface is 100% abstract class(Implicitly). After Java 8 it doesn’t hold true.
+    - Interfaces can be implemented by any class from any inheritance tree.
+    - All methods in Interfaces are abstract. (In Java 8 either abstract/ static / default)
+    - An interface can have constants, these constants are public, static and final(Implicitly).
+    - Interface methods are implicitly public & abstract. (Before Java 8)
+    - An interface can also have private methods. (Java 9)
+    - A class implementing an interface can also be an abstract class.
+    - An abstract class which is implementing an interface need not implement all abstract method.
+    - A class can Implement more than one Interface.
+    - Interfaces can not extend a class or implement an Interface.
+    - An interface can extend another Interface.
+    - A non-abstract class which is implementing an Interface needs to follow some rules.
+        - This class needs to provide the concrete implementation of all abstract method.
+        - All rules of Overriding needs to be followed.
+        - It must maintain the exact signature of a method.
+    - After Java 9 changes, Interfaces look a lot like Abstract Class, still, there are some differences.
+        - An abstract class can have variables with different modifiers which is not constant
+        - Methods in Abstract can have the different signature than just private or public
+
+4.
+	An abstract method is a method that is declared without an implementation (without braces, and followed by a semicolon)
+
+5. 
+	Da, se poate. An abstract class which is implementing an interface need not implement all abstract method.
+
+6.
+	Yes, abstract class can declare and define static methods, nothing prevents from doing that. But, we must follow guidelines for making a method static in Java, as it’s not welcomed in a object oriented design, because static methods can not be overridden in Java.
+
+7.
+	Atunci cand aceasta contine implementarile tuturor metodelor nestatice din clasa abstracta
+	parinte si implementarile metodelor interfetei, sau implementarile metodelor interfetei sunt
+	deja regasite in clasa abstracta (atunci cand subclasa contine implementarile metodelor interfetei care nu sunt regasite in clasa abstracta).
