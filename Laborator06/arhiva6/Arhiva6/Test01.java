@@ -49,5 +49,29 @@ public class Test01 {
         } else if(ok){
             System.out.println("Au trecut toate testele!");
         }
+
+        Rectangle object1 = new Rectangle();
+        //Rectangle object2 = new Shape();    // nu merge, deoarece Shape este clasa abstracta
+        Rectangle object3 = new Square();
+
+        Square s = new Square();
+        if (s instanceof Rectangle)
+            System.out.println(((Rectangle)s).getArea());
+        if (s instanceof Shape)
+            System.out.println(((Shape)s).getArea());
+        if ((Shape) s instanceof Circle) {
+            System.out.println("Este corect");
+        //    System.out.println(((Circle) s).getArea()); // produce eroare la compilare
+        }
+
+        //Conversie 1 // Nu va merge prima conversie
+        // Circle c1 = new Circle();
+        // Square sq = (Square) c1;
+        //Conversie 2 // Va merge a doua conversie
+        // Rectangle r = new Rectangle(5.0, 5.0);
+        // Square sq = (Square) r;
+        //Conversie 3 // Va merge si a treia conversie
+        Square sq = new Square(7.0);
+        Rectangle r = sq;
     }
 }
