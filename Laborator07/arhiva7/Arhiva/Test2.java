@@ -24,10 +24,9 @@ class TestEx2 {
 			set.add(100, 42);
 		}catch(IndexOutOfBoundsException e){
 			System.out.println("Good job! Exception! ");
-                        System.out.println("Got: " + set + " Correct: [0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15]");
+            System.out.println("Got: " + set + " Correct: [0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15]");
 			return;
 		}
 		System.out.println("Where's my Exception? :(");
-		
 	}
 }
