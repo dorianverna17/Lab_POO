@@ -13,7 +13,27 @@ class Catalog extends TreeSet<Catalog.Student> {
     }
 
     public Catalog() {
-        this.comparator = null;
+        this.comparator = new Comparator<Catalog.Student>() {
+            @Override
+            public int compare(Catalog.Student o1, Catalog.Student o2) {
+                if (o1.media > o2.media) {
+                    return 1;
+                } else {
+                    if (o1.media < o2.media) {
+                        return -1;
+                    } else {
+                        if (o1.name.compareTo(o2.name) > 0) {
+                            return 1;
+                        } else {
+                            if (o1.name.compareTo(o2.name) < 0)
+                                return -1;
+                        }
+                    }
+                }
+                return 0;
+            
+            }
+        };
     }
 
     public void addStudent(String name, double media, int clazz) {
@@ -44,10 +64,10 @@ class Catalog extends TreeSet<Catalog.Student> {
             @Override
             public int compare(Catalog.Student o1, Catalog.Student o2) {
                 if (o1.media > o2.media) {
-                    return -1;
+                    return 1;
                 } else {
                     if (o1.media < o2.media) {
-                        return 1;
+                        return -1;
                     } else {
                         if (o1.name.compareTo(o2.name) > 0) {
                             return 1;
@@ -85,16 +105,7 @@ class Catalog extends TreeSet<Catalog.Student> {
         @Override
         public int compareTo(Object o) {
             Catalog.Student obj = (Catalog.Student) o;
-            // if (this.media > obj.media)
-            //     return 1;
-            // else if (this.media < obj.media)
-            //     return -1;
-            // else if (this.name.compareTo(obj.name) > 0)
-            //     return 1;
-            // else if (this.name.compareTo(obj.name) == 0)
-            //     return 0;
-            // return -1;
-            return this.compare(this, obj);
+            return comparator.compare(this, obj);
         }
 
         public String toString() {
@@ -117,22 +128,29 @@ public class Task2 {
             @Override
             public int compare(Catalog.Student o1, Catalog.Student o2) {
                 // TODO: Sort by average (descending) and by name (ascending).
-                // if (o1.media > o2.media) {
-                //     return -1;
-                // } else {
-                //     if (o1.media < o2.media) {
-                //         return 1;
-                //     } else {
-                //         if (o1.name.compareTo(o2.name) > 0) {
-                //             return 1;
-                //         }
-                //     }
-                // }
-                // return -1;
-                return o1.compareTo(o2);
+                if (o1.media > o2.media) {
+                    return -1;
+                } else {
+                    if (o1.media < o2.media) {
+                        return 1;
+                    } else {
+                        if (o1.name.compareTo(o2.name) > 0) {
+                            return 1;
+                        } else {
+                            if (o1.name.compareTo(o2.name) < 0)
+                                return -1;
+                        }
+                    }
+                }
+                return 0;
             }
         });
-        catalog2.addAll(catalog);
+        catalog2.addStudent("Alexandru", 7, 324);
+        catalog2.addStudent("Ioana", 5, 321);
+        catalog2.addStudent("Maria", 10, 322);
+        catalog2.addStudent("Ionut", 6.2, 323);
+        catalog2.addStudent("Diana", 7, 322);
+        // catalog2.addAll(catalog);
 
         System.out.println("Verificam...");
         System.out.println("Continutul colectiei: " + catalog);
