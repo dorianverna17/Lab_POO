@@ -18,7 +18,6 @@ class Catalog extends TreeSet<Catalog.Student> {
 
     public void addStudent(String name, double media, int clazz) {
         this.add(new Student(name, media, clazz));
-        // Collections.sort(this, this.comparator);
     }
 
     public Student getStudent(String name) {
@@ -30,15 +29,13 @@ class Catalog extends TreeSet<Catalog.Student> {
     }
 
     public void removeStudent(String name) {
-        Iterator<Catalog.Student> iterator = this.iterator();
-        while(iterator.hasNext()) {
-            Student stud = iterator.next();    
-            System.out.println(stud.name);
-            if (stud.name.equals(name)) {
-                this.remove(stud);
-                System.out.println(this);
-            }
+        Catalog.Student stud = null;
+        for (Catalog.Student s : this) {
+            if (s.name.equals(name))
+                stud = s;
         }
+        if (stud != null)
+            ((TreeSet<Catalog.Student>)this).remove(stud);
     }
 
     public Catalog byClass(int clazz) {
@@ -54,16 +51,23 @@ class Catalog extends TreeSet<Catalog.Student> {
                     } else {
                         if (o1.name.compareTo(o2.name) > 0) {
                             return 1;
+                        } else {
+                            if (o1.name.compareTo(o2.name) < 0)
+                                return -1;
                         }
                     }
-                return -1;
                 }
+                return 0;
             }
         });
         Iterator<Catalog.Student> iterator = this.iterator();
-        while(iterator.hasNext())
-            if (iterator.next().media == clazz)
-                cat.addStudent(iterator.next().name, iterator.next().media, clazz);
+        Catalog.Student stud;
+        while(iterator.hasNext()) {
+            stud = iterator.next();
+            if (stud.clazz == clazz) {
+                cat.addStudent(stud.name, stud.media, clazz);
+            }
+        }
         return cat;
     }
 
@@ -80,14 +84,17 @@ class Catalog extends TreeSet<Catalog.Student> {
 
         @Override
         public int compareTo(Object o) {
-            Student obj = (Student) o;
-            if (this.media > obj.media)
-                return 1;
-            else if (this.media < obj.media)
-                return -1;
-            else if (this.name.compareTo(obj.name) > 0)
-                return 1;
-            return -1;
+            Catalog.Student obj = (Catalog.Student) o;
+            // if (this.media > obj.media)
+            //     return 1;
+            // else if (this.media < obj.media)
+            //     return -1;
+            // else if (this.name.compareTo(obj.name) > 0)
+            //     return 1;
+            // else if (this.name.compareTo(obj.name) == 0)
+            //     return 0;
+            // return -1;
+            return this.compare(this, obj);
         }
 
         public String toString() {
@@ -110,18 +117,19 @@ public class Task2 {
             @Override
             public int compare(Catalog.Student o1, Catalog.Student o2) {
                 // TODO: Sort by average (descending) and by name (ascending).
-                if (o1.media > o2.media) {
-                    return 1;
-                } else {
-                    if (o1.media < o2.media) {
-                        return -1;
-                    } else {
-                        if (o1.name.compareTo(o2.name) > 0) {
-                            return -1;
-                        }
-                    }
-                }
-                return 1;
+                // if (o1.media > o2.media) {
+                //     return -1;
+                // } else {
+                //     if (o1.media < o2.media) {
+                //         return 1;
+                //     } else {
+                //         if (o1.name.compareTo(o2.name) > 0) {
+                //             return 1;
+                //         }
+                //     }
+                // }
+                // return -1;
+                return o1.compareTo(o2);
             }
         });
         catalog2.addAll(catalog);
@@ -136,9 +144,10 @@ public class Task2 {
                 last = o;
                 continue;
             }
+            @SuppressWarnings("deprecation")
             int r = last.media != o.media ? new Double(last.media).compareTo(o.media) : last.name.compareTo(o.name);
             if (r != last.compareTo(o)) {
-                System.err.println("Catalog.Student.compareTo a fost implementata gresit.");
+               System.err.println("Catalog.Student.compareTo a fost implementata gresit.");
             }
         }
 
@@ -159,6 +168,7 @@ public class Task2 {
         if (catalog.byClass(322).size() != 2) {
             System.err.println("Catalog.byClass() a fost implementata gresit.");
         }
+        System.out.println(catalog.byClass(322));
 
         catalog.removeStudent("Maria");
         if (catalog.byClass(322).size() != 1) {
