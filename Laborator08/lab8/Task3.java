@@ -1,6 +1,49 @@
-package lab08;
+// package lab08;
 
 import java.util.Iterator;
+import java.util.*;
+import java.lang.*;
+
+class LinkedList<K> implements Iterable {
+    Node<K> first;
+    Node<K> last;
+
+    private static class Node<K> {
+        K value;
+        Node<K> next;
+
+        public Node(K value, Node next) {
+            this.value = value;
+            this.next = next;
+        }
+
+        public Node(K value) {
+            this.value = value;
+            this.next = null;
+        }
+    }
+
+    class ListIterator implements Iterator {
+
+    }
+
+    //Insereaza un nod la inceputul listei
+    public void addFirst(T data) {
+
+    }
+    //Insereaza un nod la sfarsitul listei
+    public void add(T data) {
+
+    }
+    //Returneaza primul nod din lista
+    public T getNode() {
+
+    }
+    //Returneaza un obiect de tip ListIterator
+    public Iterator<T> iterator() {
+        
+    }    
+}
 
 public class Task3 {
 
