@@ -21,11 +21,13 @@ class Problema1 extends JFrame implements ActionListener{
         button.addActionListener(this);
         add(button);
         disk = new JTextField(3);
-        disk.addActionListener(this);
+        disk.addActionListener(action1);
         add(disk);
         path = new JTextField(15);
+        path.addActionListener(action2);
         add(path);
         name = new JTextField(15);
+        name.addActionListener(action3);
         add(name);
        	result = new JTextArea(20, 10);
         result.setLineWrap(true);
@@ -39,6 +41,27 @@ class Problema1 extends JFrame implements ActionListener{
 	public static void main(String args[]) {
 		Problema1 fereastra = new Problema1("Problema1");
 	}
+
+	Action action1 = new AbstractAction() {
+    	@Override
+    	public void actionPerformed(ActionEvent e) {
+    		result.append(disk.getText());
+    	}
+	};
+
+	Action action2 = new AbstractAction() {
+    	@Override
+    	public void actionPerformed(ActionEvent e) {
+        	result.append(path.getText());
+    	}
+	};
+
+	Action action3 = new AbstractAction() {
+    	@Override
+    	public void actionPerformed(ActionEvent e) {
+        	result.append(name.getText());
+    	}
+	};
 
 	@Override
     public void actionPerformed(ActionEvent e){
