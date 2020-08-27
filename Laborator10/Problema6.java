@@ -45,7 +45,18 @@ public class Problema6 extends JFrame implements ActionListener {
     		File f = new File(path);
 
     		if (f.exists() && !f.isDirectory()) {
-				scroll.setVisible(true);			
+				scroll.setVisible(true);		
+				try {	
+    			Scanner sc = new Scanner(f);
+    			String aux = "";
+
+    			while(sc.hasNextLine()) {
+    				aux += sc.nextLine() + "\r\n";
+    			}
+    			textarea.setText(aux);
+    		} catch(Exception ex) {
+    			ex.printStackTrace();
+    		}
     		} else {
     			scroll.setVisible(false);
     			text.setText("");
