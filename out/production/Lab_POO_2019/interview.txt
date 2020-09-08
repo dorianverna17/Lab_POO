@@ -1,0 +1,26 @@
+1. Care este diferenta dintre o clasa interna si o clasa interna statica?
+2. De cate tipuri sunt clasele interne? Precizati cate un avantaj al uzitarii fiecarui tip in parte.
+3. Se poate suprascrie o clasa interna? Dar o clasa interna statica?
+4. Explicati mecanismul de mostenirea in cazul claselor interne. Este posibila realizarea unei clase care sa mosteneasca o clasa definita intr-o metoda? Argumentati!
+5. Limbajul Java permite definirea interfetelor in interiorul unei clase? Dar in interiorul unei metode?
+6. O metoda poate avea ca rezultat un obiect al carui tip este reprezentat de o clasa definita local in metoda?
+
+1.
+	-> Nested static class doesn't need reference of Outer class but non static nested class or Inner class requires Outer class reference. Yu cannot create instance of Inner class without creating onstance of Outer class.
+	-> Static class is actually static member of a class and can be used in static context.
+	-> you cannot access a static member of the outer class from a non static nested class. You'll need a static class.
+2.
+	-> de 4 tipuri:
+		> clase interne normale - o clasa interna poate avea acces la toti membrii clasei in care este definita, inclusiv la cei declarati folosind modificatorul private.
+		> clase interne statice - nu ai nevoie de o instanta a clasei in care este definita pentru a o folosi
+		> clase anonime - Poate implementa interfete
+		>clase interne metodelor - vizibilitatea clasei se restrange doar la nivelul metodei din care face parte
+3.
+	->	Nu, nu pot fi suprascrise. Dar se pot declara clase cu acelasi nume, dar diferite implementari. O clasa interna statica, pe acelasi rationament, nu poate fi overriden.
+4.
+	-> Pentru a mosteni o clasa interna este nevoie ca superclasa sa fie mostenita de superclasa
+	clasei interne care vrea sa mosteneasca clasa interna. Nu merge, deoarece nu se gaseste clasa care este in metoda ("cannot find symbol");
+5.
+	-> Nu, nu se poate declara o interfata intr-o metoda, dar in interiorul unei clase se poate.
+6.
+	Nu, nu este posibil (cannot find symbol).
